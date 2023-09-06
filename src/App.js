@@ -1,63 +1,92 @@
 
-
-import React from 'react';
-import './App.css';
-import {  PieChart, Pie, Tooltip } from "recharts";
+import "./styles.css";
+import React from "react";
 import {
-  BarChart,
-  Bar,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
-  Legend
+  CartesianGrid,
+  Tooltip
 } from "recharts";
 
-function App() {
-  const data = [
-    {name: "Mon", value: 30},
-    {name: "Tue", value: 24},
-    {name: "Wed", value: 29},
-    {name: "Thu", value: 33},
-    {name: "Fri", value: 27},
-  ];
+const data = [
+  {
+    name: "Sun",
+    temp: 30,
+    min: 20,
+    amt: 20
+  },
+  {
+    name: "Mon",
+    temp: 33,
+    min: 17,
+    amt: 20
+  },
+  {
+    name: "Tue",
+    temp: 20,
+    min: 16,
+    amt: 20
+  },
+  {
+    name: "Wed",
+    temp: 27,
+    min: 16,
+    amt: 20
+  },
+  {
+    name: "Fri",
+    temp: 31,
+    min: 19,
+    amt: 20
+  }
+];
+
+export default function App() {
   return (
-    <div style={{ textAlign: 'center'}}>
-      <h1> Evolution of the temperature per day</h1>
-      <div className="App">
+    <div className="container">
+      <div className="test" >
+      <h1> Chart</h1>
+  <div className="App">
   
-  <PieChart width={400} height={400}>
-      <Pie
-        data={data}
-        dataKey="value"
-        cx={200}
-        cy={200}
-        outerRadius={60}
-        fill="#8884d8"
-      />
-     <Tooltip/>
-    </PieChart>
-    <BarChart
-      width={500}
-      height={300}
+    <AreaChart
+      width={730}
+      height={250}
       data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5
-      }}
-      barSize={20}
+      margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
     >
-      <XAxis dataKey="name" scale="point" padding={{ left: 10, right: 10 }} />
+      <defs>
+        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+          <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+        </linearGradient>
+        <linearGradient id="colormin" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
+          <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+        </linearGradient>
+      </defs>
+      <XAxis dataKey="name" />
       <YAxis />
+      <CartesianGrid strokeDasharray="3 3" />
       <Tooltip />
-      <Legend />
-  
-      <Bar dataKey="value" fill="#8884d8" background={{ fill: "#eee" }} />
-    </BarChart>
+      <Area
+        type="monotone"
+        dataKey="temp"
+        stroke="#8884d8"
+        fillOpacity={1}
+        fill="url(#colorUv)"
+      />
+      <Area
+        type="monotone"
+        dataKey="min"
+        stroke="#82ca9d"
+        fillOpacity={1}
+        fill="url(#colormin)"
+      />
+    </AreaChart>
     </div>
     </div>
-  );
+    </div>);
+
 }
-
-export default App;
-
