@@ -2,15 +2,16 @@
 
 import React from 'react';
 import './App.css';
-// import ChartComponent from './Chart';
+import ChartComponent from './Chart';
 
 function App() {
   return (
     <div className="App">
-  <h1> Hello chatr</h1>
+      <ChartComponent />
     </div>
   );
 }
 
 export default App;
+
 
