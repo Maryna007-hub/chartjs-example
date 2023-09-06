@@ -46,10 +46,10 @@ const data = [
 export default function App() {
   return (
     <div className="container">
-      <div className="test" >
-      <h1> Chart</h1>
+      
   <div className="App">
-  
+  <div className="test" >
+      <h1> Chart</h1>
     <AreaChart
       width={730}
       height={250}
